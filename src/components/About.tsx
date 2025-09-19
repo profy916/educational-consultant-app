@@ -13,7 +13,7 @@ export default function About() {
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="text-xl md:text-5xl font-bold text-foreground mb-6">
               Empowering <span className="bg-gradient-secondary bg-clip-text text-transparent">Educational Success</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">

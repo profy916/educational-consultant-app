@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -11,15 +12,26 @@ const navItems = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 8);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
+    <nav className={`fixed top-0 w-full backdrop-blur-md border-b border-border z-50 transition-colors ${isScrolled ? "bg-background/90 shadow-md" : "bg-background/80"}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <div className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              EduConsult
-            </div>
+            <a href="#home" className="flex items-center gap-3 group">
+              <img src={logo} alt="EduConsult logo" className="h-8 w-8 object-contain" />
+              <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent group-hover:opacity-90 transition-smooth">
+                EduConsult
+              </span>
+            </a>
           </div>
           
           {/* Desktop Navigation */}
@@ -29,7 +41,7 @@ export default function Navigation() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-foreground hover:text-primary transition-smooth px-3 py-2 text-sm font-medium"
+                  className="text-foreground/90 hover:text-primary relative transition-smooth px-3 py-2 text-sm font-medium after:content-[''] after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-0.5 after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform"
                 >
                   {item.label}
                 </a>

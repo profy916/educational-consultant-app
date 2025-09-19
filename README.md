@@ -1,73 +1,84 @@
-# Welcome to your Lovable project
+# Educational Consultant App (EduConsult)
 
-## Project info
+A modern React + Vite + TypeScript application for an educational consulting service. Built with Tailwind CSS and a component library for polished UI.
 
-**URL**: https://lovable.dev/projects/7406514e-c588-48f5-afa5-42419348bc25
+## Getting Started
 
-## How can I edit this code?
+### Prerequisites
+- Node.js 18+
+- pnpm, npm, or bun (any works)
 
-There are several ways of editing your application.
+### Installation
+```bash
+# with npm
+npm install
 
-**Use Lovable**
+# or with pnpm
+pnpm install
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7406514e-c588-48f5-afa5-42419348bc25) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+# or with bun
+bun install
 ```
 
-**Edit a file directly in GitHub**
+### Development
+```bash
+npm run dev
+```
+Then open the local URL printed by Vite.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Production Build
+```bash
+npm run build
+npm run preview
+```
 
-**Use GitHub Codespaces**
+## Project Structure
+```text
+src/
+  assets/           # static images (logo, hero)
+  components/       # UI components and sections
+  pages/            # route-level pages
+  hooks/, lib/      # utilities
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Key entry files:
+- `index.html`: root HTML
+- `src/main.tsx`: app bootstrap
+- `src/App.tsx`: routes
+- `src/pages/Index.tsx`: home composition
 
-## What technologies are used for this project?
+## UI and Styling
+- Tailwind CSS with custom theme tokens
+- Reusable UI in `src/components/ui`
 
-This project is built with:
+## Navigation & Sections
+- Sticky navigation with brand logo (`src/assets/logo.png`)
+- Sections: Home, Services, About, Contact
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Scripts
+- `dev`: start dev server
+- `build`: production build
+- `build:dev`: development-mode build
+- `preview`: preview production build
+- `lint`: run ESLint
 
-## How can I deploy this project?
+## EmailJS Setup (Contact Form)
+1. Install (already added): `@emailjs/browser`
+2. Create a `.env.local` at the project root with:
+```
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+```
+3. In EmailJS, define template variables to match the code:
+- `from_first_name`
+- `from_last_name`
+- `from_email`
+- `subject`
+- `message`
+4. Ensure your EmailJS template uses these variables in the email body.
 
-Simply open [Lovable](https://lovable.dev/projects/7406514e-c588-48f5-afa5-42419348bc25) and click on Share -> Publish.
+The contact form uses these env vars at build time via `import.meta.env`.
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## License
+MIT
